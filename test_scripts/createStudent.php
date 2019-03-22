@@ -12,12 +12,12 @@
  *  Zachary Kascak
  */
 
- $mysqli = mysqli_connect("ip.address.com", "userName", "password". "database");
+ $mysqli = mysqli_connect("ip.address.com", "userName", "password", "database");
 
  if (mysqli_connect_errno()) {
      printf("Connection Failed: %s\n", mysqli_connect_error());
      exit();
  } else {
-     printf("Host Information: %s\n". mysqli_get_host_info($mysqli));
+     printf("Host Information: %s\n", mysqli_get_host_info($mysqli));
  }
  ?>
