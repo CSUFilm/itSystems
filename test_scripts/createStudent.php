@@ -7,12 +7,12 @@
  * 
  *  createSutdent.php
  * 
- *  v0.1
- *  11 March 2019
+ *  v0.2
+ *  22 March 2019
  *  Zachary Kascak
  */
 
- $mysqli = mysqli_connect("ip.address.com", "userName", "password", "database");
+ include 'config.php';
 
  if (mysqli_connect_errno()) {
      printf("Connection Failed: %s\n", mysqli_connect_error());
