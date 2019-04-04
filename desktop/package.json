@@ -1,0 +1,22 @@
+{
+  "name": "fmait",
+  "version": "0.1.0",
+  "description": "FMA IT Management System",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CSUFilm/itSystems.git"
+  },
+  "author": "Zahcary Kascak",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/CSUFilm/itSystems/issues"
+  },
+  "homepage": "https://github.com/CSUFilm/itSystems#readme",
+  "dependencies": {
+    "mysql": "^2.16.0"
+  }
+}
