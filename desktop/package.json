@@ -1,0 +1,26 @@
+{
+  "name": "itmanagementsystem",
+  "version": "0.1.0",
+  "description": "FMA IT Management System",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CSUFilm/itSystems.git"
+  },
+  "keywords": [
+    "IT",
+    "Management"
+  ],
+  "author": "Zachary Kascak & Ryan Kraynak",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/CSUFilm/itSystems/issues"
+  },
+  "homepage": "https://github.com/CSUFilm/itSystems#readme",
+  "devDependencies": {
+    "electron": "^5.0.2"
+  }
+}
