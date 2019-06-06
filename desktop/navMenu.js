@@ -3,9 +3,9 @@
  *  School of Film and Media Arts
  * 
  *  IT Management System
- *  Base Stylesheet
+ *  Main Nav Menu Script
  * 
- *  baseStyle.css
+ *  navMenu.js
  * 
  *  v0.1
  *  31 May 2019
@@ -26,7 +26,7 @@ peopleNode.setAttribute("href", "people.html");
 peopleNode.innerHTML = "People";
 menuNode.appendChild(peopleNode);
 
-menuNode.appendChild(spacerNode);
+/*menuNode.appendChild(spacerNode);
 
 var ticketNode = document.createElement("A");
 ticketNode.setAttribute("href", "https://dvcomm.on.spiceworks.com");
@@ -38,4 +38,4 @@ menuNode.appendChild(spacerNode);
 var theiAssistNode = document.createElement("a");
 theiAssistNode.setAttribute("href", "https://filmschool.csuohio.edu");
 theiAssistNode.innerHTML = "TheiAssist";
-menuNode.appendChild(theiAssistNode);
+menuNode.appendChild(theiAssistNode);*/
