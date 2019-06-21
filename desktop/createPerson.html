@@ -32,7 +32,7 @@
     <h2>Create Person</h2>
     <br>
     <div id="personForm">
-      <form name="personForm" action="createPerson.html" method="POST">
+      <form name="personForm" action="verifyPerson.html" method="POST">
         CSU ID: <input type="text" name="csuID">
         First Name: <input type="text" name="firstName">
         Last Name: <input type="text" name="lastName">
@@ -40,16 +40,21 @@
         phone: <input type="tel" name="phone">
         <button type="submit">Submit</button>
       </form>
-      <script>
+      <!--<script>
+        const {dialog} = require('electron')
         var csuID = document.forms["personForm"]["csuID"];
         var firstName = document.forms["personForm"]["firstName"];
         var lastName = document.forms["personForm"]["lastName"];
         var email = document.forms["personForm"]["email"];
         var phone = document.forms["perosnForm"]["phone"];
 
-        //var mysql = 
-        alert("CSU ID: ");
-      </script>
-    </div>
+        let options = {
+          buttons: ['Continue'],
+          message: 'CSU ID: ' //+ csuID
+        }
+        dialog.showMessageBox(null, options)
+      </script>-->
+    </div
+    >
   </body>
 </html>
