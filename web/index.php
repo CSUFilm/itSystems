@@ -15,7 +15,7 @@
 
  require "navMenu.php";
 
- $displayBlock;
+ $displayBlock = $navMenu_DisplayBlock;
 
 ?>
 <!DOCTYPE html>
@@ -28,6 +28,18 @@
     </head>
     <body>
         <h1 id="title">FMA IT System</h1>
-        <?php echo "$navMenu_DisplayBlock"?>
+        <!--
+            nav menu
+            <?php echo "$navMenu_DisplayBlock";?>
+        -->
+        <div>
+            <br>
+            <br>
+            Please Login:
+            <form action="login.php" method="post">
+                CSU ID: <input type="text" name="csuID" id="csuID">
+                <input type="submit" value="Login">
+            </form>
+        </div>
     </body>
 </html>
