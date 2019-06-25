@@ -1,0 +1,2 @@
+Error No    Description
+1           Database Error

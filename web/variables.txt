@@ -1,0 +1,2 @@
+$_SESSION["csuID"] = Session variable storing user's CSU ID number.
+$_SESSION["itID"] = Session variable storing user's itID number.

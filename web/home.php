@@ -19,11 +19,11 @@ require "navMenu.php";
 
 $displayBlock = "";
 
-$displayBlock = . $navMenu_DiaplayBlock;
-
 $itID = $_SESSION["itID"];
 
-$displayBlock = . "
+$displayBlock .= $navMenu_DisplayBlock;
+
+$displayBlock .= "
 <br>
 <br>
 IT ID: " . $itID;
