@@ -1,2 +1,5 @@
-Error No    Description
-1           Database Error
+Error No    |Description
+============|==============================================================
+1           |Database Error
+            |
+2           |No password found

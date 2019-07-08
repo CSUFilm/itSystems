@@ -23,6 +23,7 @@ require "config.php";
 $displayBlock = "";
 $loginFormBlock = "<form action=\"login.php\" method=\"post\">
 CSU ID: <input type=\"text\" name=\"csuID\" id=\"csuID\">
+Password: <input type=\"password\" name=\"password\" />
 <input type=\"submit\" value=\"Login\">
 </form>";
 $userNotFoundBlock = "User not found.
@@ -32,9 +33,12 @@ $userNotFoundBlock = "User not found.
 /* 
 *****Connection Test*****
 
-if (mysqli_connect_errno()) {
+if (mysqli_connect_errno()) 
+{
     $displayBlock = "connection failed <br>" . mysqli_connect_error();
-} else {
+}
+else 
+{
     $displayBlock = "Connected to :" . mysqli_get_host_info($selectMySQL);
     mysqli_close($selectMySQL);
 }
@@ -42,19 +46,23 @@ if (mysqli_connect_errno()) {
 
 // Save POST data as variable
 $csuID = $_POST['csuID'];
+$password = $_POST['password'];
 
 //Validate POST Data
-if ($csuID == "") {
+if ($csuID == "") 
+{
     $displayBlock = "No username entered. Please enter a username to login.
     <br>
     <br>" . $loginFormBlock;
-} else {
+}
+else 
+{
     // Sanitize POST data
     $csuIDClean = mysqli_real_escape_string($selectMySQL, $csuID);
     $_SESSION["csuID"] = $csuIDClean;
 
     // Select data from DB
-    $csuIDSelect = "SELECT itID FROM itSystems.users WHERE csuID = ('".$csuIDClean."')  ";
+    $csuIDSelect = "SELECT itID FROM itSystems.users WHERE csuID = ('".$csuIDClean."')";
     $csuIDResult = mysqli_query($selectMySQL, $csuIDSelect);
 
     // Test results
@@ -84,8 +92,10 @@ if ($csuID == "") {
             $displayBlock = $userNotFoundBlock;
         } else if (mysqli_num_rows($employeeResult) > 1) {
             $displayBlock = "Error #1. Contact a system administrator.";
-        } else {
-            while ($row = mysqli_fetch_assoc($employeeResult)){
+        } else 
+        {
+            while ($row = mysqli_fetch_assoc($employeeResult))
+            {
                 $labTech = $row["labTech"];
                 $cageTech = $row["cageTech"];
                 $admin = $row["admin"];
@@ -110,7 +120,40 @@ if ($csuID == "") {
                 </tr>
             </table>";*/
 
-            header('Location: home.php');
+            //header('Location: home.php');
+        }
+
+        $hashSelectQuery = "SELECT hash FROM itSystems.pwd WHERE itID = ('".$itID."')";
+        $hashSelectResult = mysqli_query($selectMySQL, $hashSelectQuery);
+        if (mysqli_num_rows($hashSelectResult) < 1)
+        {
+            $displayBlock .= "Error #2. Please contact a system administrator.";
+        }
+        else if (mysqli_num_rows($hashSelectResult) > 1)
+        {
+            $displayBlock .= "Error #3. Please contact a system administrator.";
+        }
+        else
+        {
+            while ($row = mysqli_fetch_assoc($hashSelectResult))
+            {
+                $hash = $row['hash'];
+            }
+            mysqli_free_result();
+
+            if (password_verify($password, $hash))
+            {
+                header('Location: home.php');
+            }
+            else
+            {
+                $displayBlock .= "
+                <br />
+                Invalid Passowrd
+                <br />
+                <br />
+                " . $loginFormBlock;
+            }
         }
     }
 }

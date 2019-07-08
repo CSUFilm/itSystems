@@ -37,7 +37,8 @@
             <br>
             Please Login:
             <form action="login.php" method="post">
-                CSU ID: <input type="text" name="csuID" id="csuID">
+                CSU ID: <input type="text" name="csuID" id="csuID" />
+                Password: <input type="password" name="password" />
                 <input type="submit" value="Login">
             </form>
         </div>
