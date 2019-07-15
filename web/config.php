@@ -14,4 +14,5 @@
  */
 
  $selectMySQL = new mysqli("ip.address.com", "username", "password", "itSystems");
+ $userInsertMySQL = new mysqli("ip.address.com", "userInsertITSystems", "password", "itSystems");
  ?>

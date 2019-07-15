@@ -4,9 +4,9 @@
  * School of Film & Media Arts
  *
  * IT Management System
- * Create New User
+ * Create New Person
  *
- * createUser.php
+ * createPerson.php
  *
  * V. 0.1
  * 8 July 2019
@@ -27,7 +27,7 @@ $displayBlock .= $navMenu_DisplayBlock . "
 <br />
 <h2>Create New User</h2>
 <br />
-<form action=\"createUserSubmit.php\" method=\"post\">
+<form action=\"createPersonSubmit.php\" method=\"post\">
   CSU ID: <input type=\"tel\" name=\"csuID\" required />
   First Name: <input type=\"text\" name=\"firstName\" reuired />
   Last Name: <input type=\"text\" name=\"lastName\" required />
@@ -43,8 +43,9 @@ $displayBlock .= $navMenu_DisplayBlock . "
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FMA IT Systems||Create User</title>
+    <link rel="stylesheet" href="baseStyle.css" />
 </head>
 <body>
-    
+    <?php echo $displayBlock; ?>
 </body>
 </html>

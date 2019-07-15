@@ -67,11 +67,13 @@ else
 
     // Test results
     if (mysqli_num_rows($csuIDResult) < 1) {
+        mysqli_close($selectMySQL);
         $displayBlock = $userNotFoundBlock;
     } else if (mysqli_num_rows($csuIDResult) > 1) {
+        mysqli_close($selectMySQL);
         $displayBlock = "Error #1. Contact a system administrator.";
     } else {
-        $displayBlock = "User Found.";
+        //$displayBlock = "User Found.";
         while ($row = mysqli_fetch_assoc($csuIDResult)) {
             $itID = $row["itID"];
         }
@@ -89,8 +91,10 @@ else
         $employeeSelect = "SELECT * FROM itSystems.employees WHERE itID = ('".$itID."')";
         $employeeResult = mysqli_query($selectMySQL, $employeeSelect);
         if (mysqli_num_rows($employeeResult) < 1) {
+            mysqli_close($selectMySQL);
             $displayBlock = $userNotFoundBlock;
         } else if (mysqli_num_rows($employeeResult) > 1) {
+            mysqli_close($selectMySQL);
             $displayBlock = "Error #1. Contact a system administrator.";
         } else 
         {
@@ -127,10 +131,12 @@ else
         $hashSelectResult = mysqli_query($selectMySQL, $hashSelectQuery);
         if (mysqli_num_rows($hashSelectResult) < 1)
         {
+            mysqli_close($selectMySQL);
             $displayBlock .= "Error #2. Please contact a system administrator.";
         }
         else if (mysqli_num_rows($hashSelectResult) > 1)
         {
+            mysqli_close($selectMySQL);
             $displayBlock .= "Error #3. Please contact a system administrator.";
         }
         else
@@ -143,10 +149,12 @@ else
 
             if (password_verify($password, $hash))
             {
+                mysqli_close($selectMySQL);
                 header('Location: home.php');
             }
             else
             {
+                mysqli_close($selectMySQL);
                 $displayBlock .= "
                 <br />
                 Invalid Passowrd
