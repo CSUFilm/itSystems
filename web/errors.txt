@@ -5,3 +5,5 @@ Error No    |Description
 2           |No password found
             |
 3           |Person insert failed, either no insert, or more than one insert.
+            |
+4           |CSU ID already exists

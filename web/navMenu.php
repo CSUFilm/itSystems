@@ -13,5 +13,5 @@
  *  Zachary Kascak
  */
 
- $navMenu_DisplayBlock = "<nav id=\"main\"><a href=\"index.php\">Home</a> <a href=\"people.html\">People</a></nav>";
+ $navMenu_DisplayBlock = "<nav id=\"main\"><a href=\"index.php\">Home</a> <a href=\"people.php\">People</a> <a href=\"https://dvcomm.on.spiceworks.com\">Help Desk</a></nav>";
  ?>
