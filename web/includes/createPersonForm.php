@@ -16,10 +16,15 @@
  $createPersonForm_DisplayBlock = "
  <form action=\"createPersonSubmit.php\" method=\"post\">
   CSU ID: <input type=\"tel\" name=\"csuID\" required />
+  <br />
   First Name: <input type=\"text\" name=\"firstName\" reuired />
+  <br />
   Last Name: <input type=\"text\" name=\"lastName\" required />
+  <br />
   email: <input type=\"email\" name=\"email\" required />
+  <br />
   Phone: <input type=\"tel\" name=\"phone\" required />
+  <br />
   <input type=\"submit\" value=\"submit\" required />
 </form>";
 ?>

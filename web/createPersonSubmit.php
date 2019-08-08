@@ -17,7 +17,7 @@ session_start();
 
 // Required Scripts
 require "config.php";
-require "/includes/createPersonForm.php";
+require "includes/createPersonForm.php";
 
 // Variable Declarations
 $displayBlock = "";
@@ -27,17 +27,37 @@ $lastName = $_POST['lastName'];
 $email = $_POST['email'];
 $phone = $_POST['phone'];
 
+// MySQLi Connection Test
+if (mysqli_connect_errno())
+{
+    $displayBlock .= "Connection Failed, mysql error: " . mysqli_connect_error();
+}
+else
+{
+    $displayBlock .= "Connection successful.
+    <br />
+    <br />
+    Connected to: " . mysqli_get_host_info($userInsertMySQL);
+}
+
+
 // Checking for Little Bobby Tables
-$cleanCSUID = mysqli_real_escape_string($selectMySQL, $csuID);
-$cleanFirstName = mysqli_real_escape_string($selectMySQL, $firstName);
-$cleanLastName = mysqli_real_escape_string($selectMySQL, $lastName);
-$cleanEmail = mysqli_real_escape_string($selectMySQL, $email);
-$cleanPhone = mysqli_real_escape_string($selectMySQL, $phone);
+$cleanCSUID = mysqli_real_escape_string($userInsertMySQL, $csuID);
+$cleanFirstName = mysqli_real_escape_string($userInsertMySQL, $firstName);
+$cleanLastName = mysqli_real_escape_string($userInsertMySQL, $lastName);
+$cleanEmail = mysqli_real_escape_string($userInsertMySQL, $email);
+$cleanPhone = mysqli_real_escape_string($userInsertMySQL, $phone);
+
+/*
+//Testing section. To be deleted.
+
+$displayBlock .= $cleanCSUID . ", " . $cleanFirstName . ", " . $cleanLastName . ", " . $cleanEmail . ", " . $cleanPhone;
+*/
 
 // Check for CSU ID
 $csuIDSelectQuery = "SELECT * FROM users WHERE csuID = ('".$cleanCSUID."')";
-$csuIDSelectResults = mysqli_query($selectMySQL, $csuIDSelectQuery);
-$csuIDSelectNumRows = mysqli_num_rows($selectMySQL, $csuIDSelectResults);
+$csuIDSelectResults = mysqli_query($userInsertMySQL, $csuIDSelectQuery);
+$csuIDSelectNumRows = mysqli_num_rows($userInsertMySQL, $csuIDSelectResults);
 if ($csuIDSelectNumRows > 0){
     $displayBlock .= "
     <br />
@@ -48,17 +68,36 @@ if ($csuIDSelectNumRows > 0){
 }
 else
 {
+    $displayBlock .= "
+    <br />
+    <br />
+    New user detected.";
+    /*
     // Start MySQL Transaction
     mysqli_autocommit($userInsertMySQL, FALSE);
     mysqli_begin_transaction($userInsertMySQL);
+    */
 
     // Create and run query
-    $personCreateQuery = "INSERT INTO itSystems.users (csuID, firstName, lastName,  phone, email) VALUES ('".$cleanCSUID."', '".$cleanFirstName."',  '".$cleanLastName."', '".$cleanEmail."', '".$cleanPhone."')";
-    $personCreateResult = mysqli($userInsertMySQL, $personCreateQuery) or die   ($userInsertMySQL);
+    //$personCreateQuery = "INSERT INTO users (csuID, firstName, lastName,  phone, email) VALUES ('".$cleanCSUID."', '".$cleanFirstName."',  '".$cleanLastName."', '".$cleanEmail."', '".$cleanPhone."')";
+    $personCreateResult = mysqli($userInsertMySQL, "INSERT INTO users (csuID, firstName, lastName, phone, email) VALUES ('%$cleanCSUID%', '%$cleanFirstName%', '%$cleanLastName%', '%$cleanEmail%', '%$cleanPhone%')");
 
     // Retrive new person IT ID from DB
     $itID = mysqli_insert_id($userInsertMySQL);
 
+    // Test insert
+    $displayBlock .= "
+    <br />
+    <br />
+    Insert Complete.
+    <br />
+    New user ID: " . $itID;
+
+    /*
+    mysqli_rollback($userInsertMySQL);
+    */
+
+    /*
     // Test person insert
     $testNewPersonQuery = "SELECT * WHERE itID = ('".$itID."')";
     $testNewPersonResult = mysqli($selectMySQL, $testNewPersonQuery);
@@ -86,7 +125,7 @@ else
         <br />
         <br />
         " . $createPersonForm_DisplayBlock;
-    }
+    }*/
 }
 ?>
 <!DOCTYPE html>
